@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Hind Madurai', sans-serif;
+}
+
+.App {
+    text-align: center;
+}
+
+.App-header {
+    background-color: #14171a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: #f5f8fa;
+    padding: 1rem 0;
+}
+
+.logo {
+    margin: 0 16px;
+    width: 44px;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+select {
+    margin: 16px;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 999px;
+    border-color: #aab8c2;
+    border-width: 2px;
+}
+
+.location {
+    background-color: #f5f8fa;
+    padding: 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    height: 45px;
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.location:hover {
+    background-color: #e5e8e8;
+}
