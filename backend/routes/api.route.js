@@ -1,5 +1,5 @@
-const router = require('express').Router();
-const Twitter = require('twitter')
+const router = require("express").Router();
+const Twitter = require("twitter");
 
 const client = new Twitter({
   consumer_key: process.env.TWITTER_CONSUMER_API_KEY,
@@ -9,7 +9,7 @@ const client = new Twitter({
 });
 
 // To get trending topics ...
-router.get('/trends', async (req, res, next) => {
+router.get("/trends", async (req, res, next) => {
   try {
     const id = req.query.woeid;
     const trends = await client.get("trends/place.json", {
@@ -17,14 +17,22 @@ router.get('/trends', async (req, res, next) => {
     });
     res.send(trends);
   } catch (error) {
-    next(error)
+    next(error);
   }
-  
 });
 
 // This route gets the woeid for a particular location (lat/long)
-router.get('/near-me', async (req, res, next) => {
-  res.send({ message: 'Ok api is working 🚀' });
+router.get("/near-me", async (req, res, next) => {
+  try {
+    const { lat, long } = req.query;
+    const response = await client.get("/trends/closest.json", {
+      lat,
+      long,
+    });
+    res.send(response);
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;
