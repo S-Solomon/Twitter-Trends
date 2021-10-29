@@ -1,3 +1,7 @@
+:root {
+    --primary-color: #1da1f2;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -28,6 +32,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1rem 0;
 }
 
 select {
@@ -53,4 +58,48 @@ select {
 
 .location:hover {
     background-color: #e5e8e8;
+}
+
+.content {
+    max-width: 960px;
+    margin: auto;
+}
+
+.tweet_volume {
+    font-size: 12px;
+    background-color: var(--primary-color);
+    color: #f5f8fa;
+    border-radius: 999px;
+    padding: 2px 4px;
+    margin-left: 4px;
+    font-weight: bold;
+}
+
+li {
+    display: inline-block;
+    list-style-type: none;
+    background-color: #f5f8fa;
+    padding: 8px 16px;
+    margin: 8px;
+    border-radius: 999px;
+}
+
+li > a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 16px;
+}
+
+li:hover {
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
+
+li:hover > a {
+    color: #f5f8fa;
+}
+
+li:hover .tweet_volume {
+    color: var(--primary-color);
+    background-color: #f5f8fa;
 }
