@@ -26,16 +26,36 @@ const App = () => {
     }
 
     function handleLocation() {
-        alert("handle location");
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                axios.get('/api/near-me', {
+                    params: {
+                        lat: position.coords.latitude,
+                        long: position.coords.longitude,
+                    },
+                }).then(response => { 
+                    // console.log(response.data[0].woeid)
+                    setWoeid(response.data[0].woeid);
+                })
+                .catch(error => console.log(error.message))
+            }, 
+            (error) => {
+                console.log(error.message)
+            })
+        }else {
+            alert(`Geolocation not supported`)
+        }
     }
     function listTrends() {
         return (
             <ul>
                 {trends.map((trend, index) => (
                     <li key={index}>
-                        <a href={trend.url}>{trend.name}</a>
+                        <a href={trend.url} target="_blank" rel="noreferrer">
+                            {trend.name}
+                        </a>
                         {trend.tweet_volume && (
-                            <span className="tweet-volume">
+                            <span className="tweet_volume">
                                 {trend.tweet_volume}
                             </span>
                         )}
@@ -53,7 +73,7 @@ const App = () => {
             <div className="menu">
                 <select
                     name="trending-place"
-                    onChange={(e) => alert(e.target.value)}
+                    onChange={(e) => setWoeid(e.target.value)}
                 >
                     <option value="1">Worldwide</option>
                     <option value="26734">Liverpool</option>
@@ -73,6 +93,10 @@ const App = () => {
                     <option value="718345">Milan</option>
                     <option value="946738">Athens</option>
                     <option value="963291">Thessaloniki</option>
+                    <option value="23424960">Thailand</option>
+                    <option value="2295019">New Delhi</option>
+                    <option value="2171688">Zhangjiakou, China</option>
+                    <option value="1180689">Makati City, Philippines</option>
                 </select>
                 <div className="location" onClick={handleLocation}>
                     <FaCrosshairs />
